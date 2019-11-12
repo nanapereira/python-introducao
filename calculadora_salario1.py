@@ -1,3 +1,6 @@
+import os
+import datetime
+
 imposto = 27.5
 while imposto > 0:
     salario = int(input("Qual e o seu salario? Digite aqui: "))
