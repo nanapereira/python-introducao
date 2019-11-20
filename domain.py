@@ -1,8 +1,35 @@
+from decimal import Decimal
+
 class Column:
     def __init__(self, name, kind, description=""):
         self._name = name
         self._kind = kind
         self._description = description
+        
+    def __str__(self): 
+        _str = "col: {} : {} {}".format(self._name, self._kind, self._description)
+        return _str
+
+    def validate(self, data):
+        if self._kind == 'bigint':
+            if insistance(data, int):
+                return True
+            return False
+        elif self._kind == 'varchar':
+            if isinstance(data, str):
+                return True
+            return False
+        elif self._kind == 'numeric':
+            try:
+                val = Decimal(data)
+            except:
+                return False
+            return True
+
+class PrimaryKey(Column):
+    def __init__(self, name, kind, description=None):
+        super().__init__(name, kind, description=description)
+        self.is_pk = True
 
 class Relationship:
     def __init__(self, name, _from, to, on):
