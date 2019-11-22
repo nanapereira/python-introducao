@@ -27,15 +27,20 @@ def main():
     out_file = io.FileIO("saida.zip", mode="w")
 
     content_lenght = response.getheader('Content-Length')
-    if content_lenght:
-        lenght = int(content_lenght)
-        download_lenght(response, out_file, lenght)
-    else:
-        download(response, out_file)
-
-        response.close()
+    try:
+        if content_lenght:
+            lenght = int(content_lenght)
+            download_lenght(response, out_file, lenght)
+        else:
+            download(response, out_file)
+    except Exception an e:
+        print("Erro durante o dowload")
+        raise e
+    finally:
         out_file.close()
-        print("Finished")
+        response.close()
+        print("Fim")
 
 if __name__ == "__main__":
     main()
+    
