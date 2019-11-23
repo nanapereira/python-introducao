@@ -10,3 +10,4 @@ while imposto > 0:
 
     valor_real = salario - salario * (imposto/100)
     print(f"O seu valor de ganho real e de: {valor_real}")
+    

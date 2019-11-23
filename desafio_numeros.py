@@ -7,3 +7,4 @@ for i in a:
     if i in b:
         lista = (i)
         print(lista)
+        

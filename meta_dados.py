@@ -8,3 +8,4 @@ def main(caminho):
 if __name__ == "__main__":
     caminho = sys.argv[1]
     main(caminho)
+    

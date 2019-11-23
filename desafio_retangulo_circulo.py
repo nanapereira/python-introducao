@@ -20,8 +20,4 @@ class Circulo:
 
     def calcular_perimetro_circulo(self):
         return 2 * math.pi * self.raio
-
-if __name__ == "__main__":
-    ret = Retangulo(5, 3)
-    print(ret)
-    
+        
