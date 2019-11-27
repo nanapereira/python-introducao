@@ -5,24 +5,25 @@ class Column:
         self._name = name
         self._kind = kind
         self._description = description
-        
+
     def __str__(self): 
         _str = "col: {} : {} {}".format(self._name, self._kind, self._description)
         return _str
 
-    def validate(self, data):
-        if self._kind == 'bigint':
-            if insistance(data, int):
+    @staticmethod
+    def validate(kind, data):
+        if kind == 'bigint':
+            if isinstance(data, int):
                 return True
             return False
-        elif self._kind == 'varchar':
+        elif kind == 'varchar':
             if isinstance(data, str):
                 return True
             return False
-        elif self._kind == 'numeric':
+        elif kind == 'numeric':
             try:
                 val = Decimal(data)
-            except:
+            except Exception:
                 return False
             return True
 
@@ -47,9 +48,14 @@ class DataTable:
         self._data = []
 
     def add_column(self, name, kind, description=""):
+        self._validade_kind(kind)
         column = Column(name, kind, description=description)
         self._columns.append(column)
         return column
+
+    def _validade_kind(self, kind):
+        if not kind in ('bigint', 'numeric', 'varchar'):
+            raise Exception("Tipo invalido")
 
     def add_references(self, name, to, on):
         relationship = Relationship(name, self, to, on)
