@@ -1,4 +1,4 @@
-import math
+from math import pi
 
 class Retangulo:
     def __init__(self, lado_x, lado_y):
