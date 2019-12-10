@@ -47,6 +47,19 @@ class DataTable:
         self._referenced = []
         self._data = []
 
+    def _get_name(self):
+        return self._name
+
+    def _set_name(self, _name):
+        self._name = _name
+
+    def _del_name(self):
+        raise AttributeError("Não pode deletar esse atributo")
+    
+    name = property(_get_name, _set_name, _del_name)
+    references = property(lambda self: self._references)
+    referenced = property(lambda self: self._referenced)
+
     def add_column(self, name, kind, description=""):
         self._validade_kind(kind)
         column = Column(name, kind, description=description)
